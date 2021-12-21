@@ -1,0 +1,68 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  color: unset;
+}
+
+.display-none {
+  display: none;
+}
+
+.display-block {
+  display: block;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.opacity-0-transition-1 {
+  opacity: 0;
+  transition: 1s;
+}
+
+.opacity-1-transition-1 {
+  opacity: 1;
+  transition: 1s;
+}
+
+.width-0-percent {
+  width: 0%;
+}
+
+.width-100-percent {
+  width: 100%;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.position-fixed {
+  position: fixed;
+}
+
+.blur {filter: blur(2px);}
+.brightness {filter: brightness(250%);}
+.contrast {filter: contrast(180%);}
+.grayscale {filter: grayscale(100%);}
+.huerotate {filter: hue-rotate(180deg);}
+.invert {filter: invert(100%);}
+.opacity {filter: opacity(50%);}
+.saturate {filter: saturate(7);}
+.sepia {filter: sepia(100%);}
+.shadow {filter: drop-shadow(8px 8px 10px green);}
+.contrast-opacity {filter: contrast(180%) opacity(50%);}
+
+.disableBlur { filter: blur(0); }
