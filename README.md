@@ -1,2 +1,2 @@
 # html-javascript-css
-Repository for html, javascript and css projects
+Make pairs made using html, javascript and css.
