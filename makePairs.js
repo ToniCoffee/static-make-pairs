@@ -87,7 +87,6 @@ function setImageProperties(img, imgs, choice, i, j) {
   img.style.outline = '2px solid #5b08c7';
 }
 
-// https://blog.interactius.com/efecto-flip-card-css-en-paginaci%C3%B3n-javascript-8dc1a8481a16
 async function renderMap() {
   let tilesCount = 0;
   let imgs = [];
@@ -243,16 +242,12 @@ function info(title, text, buttonText, otherButtonText) {
   element.style.justifyContent = 'center';
   element.style.flexWrap = 'wrap';
   element.style.width = '100%';
-  // element.style.height = '100%';
-  // element.style.backgroundColor = 'red';
   element.style.color = '#ffffff';
   element.style.fontWeight = 'bold';
 
   const elementH2 = document.createElement('h2');
   elementH2.innerHTML = title;
-  // elementH2.style.display = 'block';
   elementH2.style.width = '100%';
-  // elementH2.style.backgroundColor = 'green';
   elementH2.style.textAlign = 'center';
   elementH2.style.padding = '.5rem 1rem';
 
@@ -261,15 +256,13 @@ function info(title, text, buttonText, otherButtonText) {
   elementInfo.style.width = '100%';
   elementInfo.style.textAlign = 'center';
   elementInfo.style.padding = '.5rem 1rem';
-  // elementInfo.style.backgroundColor = 'orange';
 
   const btn = document.createElement('button');
-  // btn.style.position = 'absolute';
   btn.style.flexGrow = 1;
   btn.innerHTML = buttonText;
   btn.style.padding = '.5rem 1rem';
   btn.style.margin = '.5rem 1rem';
-  btn.style.backgroundColor = '#1772cc'; // '#5b08c7';
+  btn.style.backgroundColor = '#1772cc'; 
   btn.style.color = 'white';
   btn.style.fontWeight = 'bold';
   btn.style.border = 'none';
@@ -288,12 +281,11 @@ function info(title, text, buttonText, otherButtonText) {
 
   if(otherButtonText) {
     const other = document.createElement('button');
-    // other.style.position = 'absolute';
     other.style.flexGrow = 1;
     other.innerHTML = otherButtonText;
     other.style.padding = '.5rem 1rem';
     other.style.margin = '.5rem 1rem';
-    other.style.backgroundColor = '#1772cc'; // '#5b08c7';
+    other.style.backgroundColor = '#1772cc';
     other.style.color = 'white';
     other.style.fontWeight = 'bold';
     other.style.border = 'none';
