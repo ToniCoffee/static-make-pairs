@@ -1,4 +1,6 @@
-const wrapperSize = 400;
+const deviceWidth = screen.width | window.innerWidth;
+let wrapperSize = deviceWidth - 50;
+if(wrapperSize > 400) wrapperSize = 400;
 
 let columns = 2;
 let rows = columns;
@@ -57,8 +59,7 @@ async function onNextLevel() {
 function setReadyButtonActive() {
   const readyBtn = document.getElementById('ready');
   readyBtn.disabled = false;
-  readyBtn.className = 'active';
-  readyBtn.style.opacity = '1';
+  readyBtn.classList.remove('disable');
   readyBtn.onmouseleave();
 }
 function checkReadjust() {
@@ -77,14 +78,7 @@ async function getData(numberOfResults) {
 function setImageProperties(img, imgs, choice, i, j) {
   img.id = `img_${i}_${j}`;
   img.className = 'front';
-  img.style.position = 'absolute';
   img.src = imgs[choice].picture.large;
-  img.style.objectFit = 'cover';
-  img.style.width = `100%`;
-  img.style.borderRadius = '25%';
-  img.style.padding = '.25rem';
-  img.style.backgroundColor = '#ffffff66';
-  img.style.outline = '2px solid #5b08c7';
 }
 
 async function renderMap() {
@@ -100,31 +94,19 @@ async function renderMap() {
     for(let j = 0; j < columns; j++) {
       const elementWrapper = document.createElement('div');
       elementWrapper.id = 'flip-container';
-      elementWrapper.style.position = 'absolute';
       elementWrapper.style.left = `${j * tileSize}px`;
       elementWrapper.style.top = `${i * tileSize * resizeHeight}px`;
       elementWrapper.style.width = `${tileSize}px`;
       elementWrapper.style.height = `${tileSize * resizeHeight}px`;
-      elementWrapper.style.padding = '.25rem';
-      elementWrapper.style.backgroundColor = '#000000';
-      elementWrapper.style.outline = '2px solid #ffffff11';
 
       const card = document.createElement('div');
       card.id = `${i}_${j}`;
       card.className = 'card';
-      card.style.position = 'relative';
-      card.style.width = '100%';
-      card.style.height = '100%';
       elements.push(card);
 
       const backSide = document.createElement('div');
       backSide.id = 'backside';
       backSide.className = 'back';
-      backSide.style.position = 'absolute';
-      backSide.style.width = '100%';
-      backSide.style.height = '100%';
-      backSide.style.borderRadius = '25%';
-      backSide.style.backgroundColor = '#ffffff';
       
       const img = document.createElement('img');
 
@@ -151,7 +133,6 @@ async function renderMap() {
 
   const btn = document.createElement('button');
   btn.id = 'ready';
-  btn.style.position = 'absolute';
   btn.innerHTML = 'Ready!';
   btn.disabled = true;
   btn.classList = 'disable';
@@ -159,24 +140,17 @@ async function renderMap() {
   wrapper.appendChild(btn);
 
   btn.onmouseover = () => {
-    btn.style.backgroundColor = 'dodgerblue';
-    btn.style.cursor = 'pointer';
-    btn.style.border = '2px solid #000000';
+    btn.innerHTML = 'Go!';
   };
   btn.onmouseleave = () => {
-    btn.style.backgroundColor = '#5b08c7';
-    btn.style.border = '2px solid #00000000';
+    btn.innerHTML = 'Ready!';
   };
   btn.onclick = () => {
     setTimeout(() => {
       elements.forEach(card => card.style.transform = 'rotateY(-180deg)')
       playing = true;
     }, 50);
-    btn.classList = 'disable';
-    btn.style.backgroundColor = '#00000055';
-    btn.style.opacity = '0.5';
-    btn.style.border = '2px solid #00000000';
-    btn.style.cursor = 'default';
+    btn.classList.add('disable');
     btn.disabled = true;
   };
 
@@ -224,53 +198,19 @@ async function reDrawMap() {
 
 function info(title, text, buttonText, otherButtonText) {
   const infoWrapper = document.createElement('div');
-  infoWrapper.style.display = 'flex';
-  infoWrapper.style.alignItems = 'center';
-  infoWrapper.style.justifyContent = 'center';
-  infoWrapper.style.position = 'absolute';
-  infoWrapper.style.left = '50%';
-  infoWrapper.style.top = '50%';
-  infoWrapper.style.transform = 'translate(-50%, -50%)';
-  infoWrapper.style.width = '100%';
-  infoWrapper.style.height = '100%';
-  infoWrapper.style.padding = '1rem';
-  infoWrapper.style.backgroundColor = '#000000cc';
+  infoWrapper.id = "info-wrapper";
 
   const element = document.createElement('div');
-  element.style.display = 'flex';
-  element.style.alignItems = 'center';
-  element.style.justifyContent = 'center';
-  element.style.flexWrap = 'wrap';
-  element.style.width = '100%';
-  element.style.color = '#ffffff';
-  element.style.fontWeight = 'bold';
 
   const elementH2 = document.createElement('h2');
   elementH2.innerHTML = title;
-  elementH2.style.width = '100%';
-  elementH2.style.textAlign = 'center';
-  elementH2.style.padding = '.5rem 1rem';
 
   const elementInfo = document.createElement('p');
   elementInfo.innerHTML = text;
-  elementInfo.style.width = '100%';
-  elementInfo.style.textAlign = 'center';
-  elementInfo.style.padding = '.5rem 1rem';
 
   const btn = document.createElement('button');
-  btn.style.flexGrow = 1;
+  btn.className = 'btn-info';
   btn.innerHTML = buttonText;
-  btn.style.padding = '.5rem 1rem';
-  btn.style.margin = '.5rem 1rem';
-  btn.style.backgroundColor = '#1772cc'; 
-  btn.style.color = 'white';
-  btn.style.fontWeight = 'bold';
-  btn.style.border = 'none';
-  btn.style.textShadow = '2px 2px 2px black';
-  btn.style.boxShadow = '2px 2px 2px black';
-  btn.style.borderRadius = '5px';
-  btn.style.border = '2px solid #00000000';
-  btn.style.cursor = 'pointer';
 
   btn.onclick = async () => {
     infoWrapper.style.display = 'none';
@@ -281,19 +221,8 @@ function info(title, text, buttonText, otherButtonText) {
 
   if(otherButtonText) {
     const other = document.createElement('button');
-    other.style.flexGrow = 1;
+    other.className = 'btn-info';
     other.innerHTML = otherButtonText;
-    other.style.padding = '.5rem 1rem';
-    other.style.margin = '.5rem 1rem';
-    other.style.backgroundColor = '#1772cc';
-    other.style.color = 'white';
-    other.style.fontWeight = 'bold';
-    other.style.border = 'none';
-    other.style.textShadow = '2px 2px 2px black';
-    other.style.boxShadow = '2px 2px 2px black';
-    other.style.borderRadius = '5px';
-    other.style.border = '2px solid #00000000';
-    other.style.cursor = 'pointer';
 
     other.onclick = async () => {
       infoWrapper.style.display = 'none';

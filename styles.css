@@ -8,5 +8,13 @@
 
 body {
   overflow: hidden;
-  background-color: #666666;
+  width: 100vw;
+  height: 100vh;
+  /* background-color: #666666; */
+  /* background-color: #aaa; */
+  background-color: #bbb;
+  background-image: radial-gradient(#3333 10%, transparent 11%), radial-gradient(#3333 10%, transparent 11%);
+  background-size: 10px 10px;
+  background-position: 0 0, 5px 5px;
+  background-repeat: repeat;
 }
